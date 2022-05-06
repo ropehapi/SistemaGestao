@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductCategoryRequest;
+use App\Http\Requests\UpdateProductCategoryRequest;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -33,12 +35,12 @@ class ProductCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductCategoryRequest $request)
     {
         $productCategory = new ProductCategory();
 
         $productCategory->name = $request->name;
-        
+
         $productCategory->save();
 
         return $productCategory;
@@ -73,9 +75,10 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(UpdateProductCategoryRequest $request, ProductCategory $productCategory)
     {
         $productCategory->name = $request->name;
+
         $productCategory->update();
 
         return $productCategory;
@@ -90,6 +93,7 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         $productCategory->delete();
+
         return ProductCategory::all();
     }
 }
