@@ -36,7 +36,9 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $productCategory = new ProductCategory();
+
         $productCategory->name = $request->name;
+        
         $productCategory->save();
 
         return $productCategory;
